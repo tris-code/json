@@ -153,6 +153,28 @@ class JSONDecoderTests: TestCase {
         }
     }
 
+    func testDecodable() {
+        let json = """
+            {"answer":42,"hello":"Hello, World!"}
+            """
+        struct Model: Decodable {
+            let answer: Int
+            let hello: String
+        }
+        do {
+            let type: Decodable.Type = Model.self
+            let decodable = try JSONDecoder().decode(decodable: type, from: json)
+            guard let object = decodable as? Model else {
+                fail()
+                return
+            }
+            assertEqual(object.answer, 42)
+            assertEqual(object.hello, "Hello, World!")
+        } catch {
+            fail(String(describing: error))
+        }
+    }
+
 
     static var allTests = [
         ("testKeyed", testKeyed),
@@ -163,5 +185,6 @@ class JSONDecoderTests: TestCase {
         ("testEncodeUnkeyed", testEncodeUnkeyed),
         ("testEncodeUnkeyedOfUnkeyed", testEncodeUnkeyedOfUnkeyed),
         ("testEnum", testEnum),
+        ("testDecodable", testDecodable),
     ]
 }
