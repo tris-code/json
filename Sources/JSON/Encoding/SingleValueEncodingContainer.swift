@@ -9,6 +9,10 @@
  */
 
 struct JSONSingleValueEncodingContainer: SingleValueEncodingContainer {
+    var codingPath: [CodingKey] {
+        return []
+    }
+
     let encoder: _JSONEncoder
 
     init(_ encoder: _JSONEncoder) {

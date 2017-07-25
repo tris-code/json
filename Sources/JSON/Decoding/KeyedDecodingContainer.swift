@@ -10,7 +10,7 @@
 
 struct JSONKeyedDecodingContainer<K : CodingKey>
 : KeyedDecodingContainerProtocol {
-    var codingPath: [CodingKey?] {
+    var codingPath: [CodingKey] {
         return []
     }
     var allKeys: [K] {
@@ -59,6 +59,11 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
         }
 
         return value
+    }
+
+    func decodeNil(forKey key: K) throws -> Bool {
+        // TODO:
+        fatalError()
     }
 
     func decode(_ type: Bool.Type, forKey key: K) throws -> Bool {
@@ -120,7 +125,7 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
     func decode<T>(
         _ type: T.Type,
         forKey key: K
-    ) throws -> T? where T : Decodable {
+    ) throws -> T where T : Decodable {
         guard let value = object[key.stringValue] else {
             throw DecodingError.keyNotFound(key, nil)
         }

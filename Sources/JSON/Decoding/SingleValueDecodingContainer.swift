@@ -9,6 +9,10 @@
  */
 
 struct JSONSingleValueDecodingContainer: SingleValueDecodingContainer {
+    var codingPath: [CodingKey] {
+        return []
+    }
+
     var value: JSONValue
     init(_ value: JSONValue) {
         self.value = value

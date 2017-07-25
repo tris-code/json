@@ -9,14 +9,18 @@
  */
 
 struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
-    var codingPath: [CodingKey?]
+    var codingPath: [CodingKey] {
+        return []
+    }
+
     let encoder: _JSONEncoder
     let nestingLevel: Int
+    var count: Int
 
     init(_ encoder: _JSONEncoder) {
-        self.codingPath = []
         self.encoder = encoder
-        nestingLevel = encoder.openedContainers.count
+        self.nestingLevel = encoder.openedContainers.count
+        self.count = 0
     }
 
     var hasValues = false
@@ -36,82 +40,100 @@ struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         }
     }
 
+    mutating func encodeNil() throws {
+        // TODO:
+        fatalError()
+    }
+
     mutating func encode(_ value: Int) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: Int8) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: Int16) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: Int32) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: Int64) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: UInt) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: UInt8) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: UInt16) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: UInt32) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: UInt64) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: Float) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: Double) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode(_ value: String) throws {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         try encoder.encode(value)
+        count += 1
     }
 
     mutating func encode<T>(_ value: T) throws where T : Encodable {
@@ -119,6 +141,7 @@ struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         writeCommaIfNeeded()
         hasNested = true
         try value.encode(to: encoder)
+        count += 1
     }
 
     mutating func nestedContainer<NestedKey>(
@@ -127,6 +150,7 @@ struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         hasNested = true
+        count += 1
         return encoder.container(keyedBy: keyType)
     }
 
@@ -134,6 +158,7 @@ struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         closeNestedIfNeeded()
         writeCommaIfNeeded()
         hasNested = true
+        count += 1
         return encoder.unkeyedContainer()
     }
 

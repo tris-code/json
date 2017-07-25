@@ -12,12 +12,14 @@ struct JSONKeyedEncodingContainer<K : CodingKey>
 : KeyedEncodingContainerProtocol {
     typealias Key = K
 
-    var codingPath: [CodingKey?]
+    var codingPath: [CodingKey] {
+        return []
+    }
+
     let encoder: _JSONEncoder
     let nestingLevel: Int
 
     init(_ encoder: _JSONEncoder) {
-        self.codingPath = []
         self.encoder = encoder
         nestingLevel = encoder.openedContainers.count
     }
@@ -44,6 +46,11 @@ struct JSONKeyedEncodingContainer<K : CodingKey>
             encoder.closeContainers(downTo: nestingLevel)
             hasNested = false
         }
+    }
+
+    mutating func encodeNil(forKey key: K) throws {
+        // TODO:
+        fatalError()
     }
 
     mutating func encode(_ value: Bool, forKey key: K) throws {
