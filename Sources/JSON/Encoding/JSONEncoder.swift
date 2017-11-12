@@ -14,13 +14,13 @@ public struct JSONEncoder {
         self.capacity = capacity
     }
 
-    public func encode<T: Encodable>(_ value: T) throws -> String {
+    public func encode<T: Encodable>(_ value: T) throws -> [UInt8] {
         let encoder = _JSONEncoder(reservingCapacity: capacity)
         try value.encode(to: encoder)
         return encoder.json
     }
     
-    public func encode(_ value: Encodable) throws -> String {
+    public func encode(_ value: Encodable) throws -> [UInt8] {
         let encoder = _JSONEncoder(reservingCapacity: capacity)
         try value.encode(to: encoder)
         return encoder.json
@@ -37,7 +37,7 @@ class _JSONEncoder: Encoder {
 
     let storage: Storage
 
-    var json: String {
+    var json: [UInt8] {
         closeContainers(downTo: 0)
         return storage.json
     }

@@ -10,10 +10,10 @@
 
 extension String {
     init(
-        from json: String.UnicodeScalarView,
-        at index: inout String.UnicodeScalarView.Index
+        from json: [UInt8],
+        at index: inout Int
     ) throws {
-        guard json[index] == "\"" else {
+        guard json[index] == .quote else {
             throw JSONError.invalidJSON
         }
         json.formIndex(after: &index)
@@ -26,12 +26,12 @@ extension String {
                 throw JSONError.invalidJSON
             }
             switch json[index] {
-            case "\"": result.append("\"")
-            case "n": result.append("\n")
-            case "r": result.append("\r")
-            case "t": result.append("\t")
-            case "\\": result.append("\\")
-            case "u": result.unicodeScalars.append(try readUnicodeScalar())
+            case .quote: result.append("\"")
+            case .n: result.append("\n")
+            case .r: result.append("\r")
+            case .t: result.append("\t")
+            case .backslash: result.append("\\")
+            case .u: result.unicodeScalars.append(try readUnicodeScalar())
             default: throw JSONError.invalidJSON
             }
         }
@@ -46,7 +46,7 @@ extension String {
                 &index, offsetBy: 3, limitedBy: json.endIndex) else {
                     throw JSONError.invalidJSON
             }
-            guard let code = Int(String(json[start...index]), radix: 16),
+            guard let code = Int(String(decoding: json[start...index], as: UTF8.self), radix: 16),
                 let scalar = Unicode.Scalar(code) else {
                     throw JSONError.invalidJSON
             }
@@ -57,14 +57,14 @@ extension String {
         while !done, index < json.endIndex {
             let character =  json[index]
             switch character {
-            case "\"":
+            case .quote:
                 done = true
-            case "\\":
+            case .backslash:
                 try readEscaped()
             case _ where character.contained(in: .control):
                 throw JSONError.invalidJSON
             default:
-                result.unicodeScalars.append(character)
+                result.unicodeScalars.append(Unicode.Scalar(character))
             }
             json.formIndex(after: &index)
         }
