@@ -5,7 +5,7 @@ JSON Encoder & Decoder for Swift 4.
 ## Package.swift
 
 ```swift
-.package(url: "https://github.com/tris-foundation/json.git", from: "0.4.0")
+.package(url: "https://github.com/tris-foundation/json.git", .branch("master"))
 ```
 
 ## Performance
