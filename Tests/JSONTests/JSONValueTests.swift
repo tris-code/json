@@ -137,15 +137,4 @@ class JSONValueTests: TestCase {
             fail(String(describing: error))
         }
     }
-
-
-    static var allTests = [
-        ("testNull", testNull),
-        ("testBool", testBool),
-        ("testNumber", testNumber),
-        ("testString", testString),
-        ("testObject", testObject),
-        ("testArray", testArray),
-        ("testNested", testNested),
-    ]
 }

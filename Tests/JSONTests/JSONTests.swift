@@ -72,12 +72,4 @@ class JSONTests: TestCase {
         assertEqual(model?.answer, 42)
         assertEqual(model?.hello, "こんにちは")
     }
-
-
-    static var allTests = [
-        ("testEncode", testEncode),
-        ("testDecode", testDecode),
-        ("testDecodeEscaped", testDecodeEscaped),
-        ("testDecodeEscapedUnicode", testDecodeEscapedUnicode),
-    ]
 }

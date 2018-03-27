@@ -61,11 +61,4 @@ class _JSONDecoderTests: TestCase {
             fail(String(describing: error))
         }
     }
-
-
-    static var allTests = [
-        ("testKeyedContainer", testKeyedContainer),
-        ("testUnkeyedContainer", testUnkeyedContainer),
-        ("testSingleValueContainer", testSingleValueContainer)
-    ]
 }

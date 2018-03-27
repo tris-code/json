@@ -51,11 +51,4 @@ class _JSONEncoderTests: TestCase {
         try? container.encode(true)
         assertEqual(output.bytes, expected)
     }
-
-
-    static var allTests = [
-        ("testKeyedContainer", testKeyedContainer),
-        ("testUnkeyedContainer", testUnkeyedContainer),
-        ("testSingleValueContainer", testSingleValueContainer)
-    ]
 }

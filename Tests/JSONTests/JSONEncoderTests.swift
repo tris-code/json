@@ -161,17 +161,4 @@ class JSONEncoderTests: TestCase {
             fail(String(describing: error))
         }
     }
-
-
-    static var allTests = [
-        ("testKeyed", testKeyed),
-        ("testKeyedNested", testKeyedNested),
-        ("testKeyedInTheMiddle", testKeyedInTheMiddle),
-        ("testNestedInTheMiddle", testNestedInTheMiddle),
-        ("testNestedArrayInTheMiddle", testNestedArrayInTheMiddle),
-        ("testEncodeUnkeyed", testEncodeUnkeyed),
-        ("testEncodeUnkeyedOfUnkeyed", testEncodeUnkeyedOfUnkeyed),
-        ("testEnum", testEnum),
-        ("testEncodable", testEncodable),
-    ]
 }
