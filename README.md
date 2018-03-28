@@ -64,3 +64,8 @@ Foundation.JSONEncoder: 92 619 tasks/sec<br>
 
 JSON.JSONDecoder: 236 062 tasks/sec<br>
 Foundation.JSONDecoder: 226 515 tasks/sec<br>
+
+`{"message":"\u3053\u3093\u306B\u3061\u306F\u4E16\u754C\uFF01"}`<br>
+
+JSON.JSONDecoder: 179 440 tasks/sec<br>
+Foundation.JSONDecoder: 88 614 tasks/sec<br>
