@@ -3,28 +3,28 @@ import XCTest
 extension JSONDecoderTests {
     static let __allTests = [
         ("testDecodable", testDecodable),
-        ("testEncodeUnkeyed", testEncodeUnkeyed),
-        ("testEncodeUnkeyedOfUnkeyed", testEncodeUnkeyedOfUnkeyed),
         ("testEnum", testEnum),
         ("testKeyed", testKeyed),
         ("testKeyedNested", testKeyedNested),
         ("testKeyedNestedInTheMiddle", testKeyedNestedInTheMiddle),
         ("testNestedArrayInTheMiddle", testNestedArrayInTheMiddle),
         ("testNestedArraysInTheMiddle", testNestedArraysInTheMiddle),
+        ("testUnkeyed", testUnkeyed),
+        ("testUnkeyedOfUnkeyed", testUnkeyedOfUnkeyed),
     ]
 }
 
 extension JSONEncoderTests {
     static let __allTests = [
         ("testEncodable", testEncodable),
-        ("testEncodeUnkeyed", testEncodeUnkeyed),
-        ("testEncodeUnkeyedOfUnkeyed", testEncodeUnkeyedOfUnkeyed),
         ("testEnum", testEnum),
         ("testKeyed", testKeyed),
         ("testKeyedInTheMiddle", testKeyedInTheMiddle),
         ("testKeyedNested", testKeyedNested),
         ("testNestedArrayInTheMiddle", testNestedArrayInTheMiddle),
         ("testNestedInTheMiddle", testNestedInTheMiddle),
+        ("testUnkeyed", testUnkeyed),
+        ("testUnkeyedOfUnkeyed", testUnkeyedOfUnkeyed),
     ]
 }
 
@@ -51,15 +51,16 @@ extension JSONValueTests {
 
 extension UnkeyedDecodingContainerTests {
     static let __allTests = [
-        ("testNestedUnkeyedContainer", testNestedUnkeyedContainer),
-        ("testUnkeyedContainer", testUnkeyedContainer),
+        ("testContainer", testContainer),
+        ("testNestedContainer", testNestedContainer),
     ]
 }
 
 extension UnkeyedEncodingContainerTests {
     static let __allTests = [
-        ("testNestedUnkeyedContainer", testNestedUnkeyedContainer),
-        ("testUnkeyedContainer", testUnkeyedContainer),
+        ("testContainer", testContainer),
+        ("testNestedContainer", testNestedContainer),
+        ("testNull", testNull),
     ]
 }
 
