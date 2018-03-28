@@ -17,7 +17,7 @@ extension Array where Element == JSONValue {
         }
         var result = [JSONValue]()
         loop: while true {
-            try stream.consume(set: .whitespace)
+            try stream.consume(set: .whitespaces)
 
             switch try stream.peek() {
             case .bracketClose:
