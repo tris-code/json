@@ -12,6 +12,22 @@ extension DecodeValueTests {
     ]
 }
 
+extension DecoderTests {
+    static let __allTests = [
+        ("testKeyedContainer", testKeyedContainer),
+        ("testSingleValueContainer", testSingleValueContainer),
+        ("testUnkeyedContainer", testUnkeyedContainer),
+    ]
+}
+
+extension EncoderTests {
+    static let __allTests = [
+        ("testKeyedContainer", testKeyedContainer),
+        ("testSingleValueContainer", testSingleValueContainer),
+        ("testUnkeyedContainer", testUnkeyedContainer),
+    ]
+}
+
 extension JSONDecoderTests {
     static let __allTests = [
         ("testDecodable", testDecodable),
@@ -49,6 +65,13 @@ extension JSONTests {
     ]
 }
 
+extension PublicAPITests {
+    static let __allTests = [
+        ("testJSONEncoder", testJSONEncoder),
+        ("testJSONEncoderEncode", testJSONEncoderEncode),
+    ]
+}
+
 extension UnkeyedDecodingContainerTests {
     static let __allTests = [
         ("testContainer", testContainer),
@@ -76,34 +99,19 @@ extension ValueTests {
     ]
 }
 
-extension _JSONDecoderTests {
-    static let __allTests = [
-        ("testKeyedContainer", testKeyedContainer),
-        ("testSingleValueContainer", testSingleValueContainer),
-        ("testUnkeyedContainer", testUnkeyedContainer),
-    ]
-}
-
-extension _JSONEncoderTests {
-    static let __allTests = [
-        ("testKeyedContainer", testKeyedContainer),
-        ("testSingleValueContainer", testSingleValueContainer),
-        ("testUnkeyedContainer", testUnkeyedContainer),
-    ]
-}
-
 #if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(DecodeValueTests.__allTests),
+        testCase(DecoderTests.__allTests),
+        testCase(EncoderTests.__allTests),
         testCase(JSONDecoderTests.__allTests),
         testCase(JSONEncoderTests.__allTests),
         testCase(JSONTests.__allTests),
+        testCase(PublicAPITests.__allTests),
         testCase(UnkeyedDecodingContainerTests.__allTests),
         testCase(UnkeyedEncodingContainerTests.__allTests),
         testCase(ValueTests.__allTests),
-        testCase(_JSONDecoderTests.__allTests),
-        testCase(_JSONEncoderTests.__allTests),
     ]
 }
 #endif

@@ -12,14 +12,14 @@ import Test
 import Stream
 @testable import JSON
 
-class _JSONEncoderTests: TestCase {
+class EncoderTests: TestCase {
     func testKeyedContainer() {
         scope {
             let expected = """
             {"answer":42}
             """
             let output = OutputByteStream()
-            let encoder = _JSONEncoder(output)
+            let encoder = Encoder(output)
             enum Keys: CodingKey {
                 case answer
             }
@@ -34,7 +34,7 @@ class _JSONEncoderTests: TestCase {
         scope {
             let expected = "[1,[2],[3],4]"
             let output = OutputByteStream()
-            let encoder = _JSONEncoder(output)
+            let encoder = Encoder(output)
             var container = encoder.unkeyedContainer()
             try container.encode(1)
             var nested1 = container.nestedUnkeyedContainer()
@@ -51,7 +51,7 @@ class _JSONEncoderTests: TestCase {
         scope {
             let expected = "true"
             let output = OutputByteStream()
-            let encoder = _JSONEncoder(output)
+            let encoder = Encoder(output)
             var container = encoder.singleValueContainer()
             try container.encode(true)
             assertEqual(output.string, expected)

@@ -10,7 +10,7 @@
 
 import Stream
 
-struct EncoderError: Encoder {
+struct EncoderError: Swift.Encoder {
     var codingPath: [CodingKey] { return [] }
 
     var userInfo: [CodingUserInfoKey : Any] { return [:] }
@@ -69,7 +69,7 @@ struct UnkeyedEncodingContainerError: UnkeyedEncodingContainer {
         return UnkeyedEncodingContainerError()
     }
 
-    mutating func superEncoder() -> Encoder {
+    mutating func superEncoder() -> Swift.Encoder {
         return EncoderError()
     }
 }
@@ -101,11 +101,11 @@ struct KeyedEncodingContainerError<K : CodingKey>
         return UnkeyedEncodingContainerError()
     }
 
-    mutating func superEncoder() -> Encoder {
+    mutating func superEncoder() -> Swift.Encoder {
         return EncoderError()
     }
 
-    mutating func superEncoder(forKey key: K) -> Encoder {
+    mutating func superEncoder(forKey key: K) -> Swift.Encoder {
         return EncoderError()
     }
 }

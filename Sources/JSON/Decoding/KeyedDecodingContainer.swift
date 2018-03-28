@@ -129,7 +129,7 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
         guard let value = object[key.stringValue] else {
             throw DecodingError.keyNotFound(key, nil)
         }
-        let decoder = try _JSONDecoder(value)
+        let decoder = try Decoder(value)
         return try T(from: decoder)
     }
 
@@ -196,7 +196,7 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
         guard let value = object[key.stringValue] else {
             return nil
         }
-        let decoder = try _JSONDecoder(value)
+        let decoder = try Decoder(value)
         return try T(from: decoder)
     }
 
@@ -226,14 +226,14 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
         return JSONUnkeyedDecodingContainer(array)
     }
 
-    func superDecoder() throws -> Decoder {
-        return try _JSONDecoder(.object(object))
+    func superDecoder() throws -> Swift.Decoder {
+        return try Decoder(.object(object))
     }
 
-    func superDecoder(forKey key: K) throws -> Decoder {
+    func superDecoder(forKey key: K) throws -> Swift.Decoder {
         guard let nested = object[key.stringValue] else {
             throw DecodingError.keyNotFound(key, nil)
         }
-        return try _JSONDecoder(nested)
+        return try Decoder(nested)
     }
 }

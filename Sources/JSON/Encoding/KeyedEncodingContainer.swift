@@ -10,7 +10,7 @@
 
 import Stream
 
-struct JSONKeyedEncodingContainer<K : CodingKey, Writer: StreamWriter>
+struct JSONKeyedEncodingContainer<K : CodingKey>
 : KeyedEncodingContainerProtocol {
     typealias Key = K
 
@@ -18,10 +18,10 @@ struct JSONKeyedEncodingContainer<K : CodingKey, Writer: StreamWriter>
         return []
     }
 
-    let encoder: _JSONEncoder<Writer>
+    let encoder: Encoder
     let nestingLevel: Int
 
-    init(_ encoder: _JSONEncoder<Writer>) {
+    init(_ encoder: Encoder) {
         self.encoder = encoder
         nestingLevel = encoder.openedContainers.count
     }
@@ -192,7 +192,7 @@ struct JSONKeyedEncodingContainer<K : CodingKey, Writer: StreamWriter>
         }
     }
 
-    mutating func superEncoder() -> Encoder {
+    mutating func superEncoder() -> Swift.Encoder {
         do {
             try closeNestedIfNeeded()
             try writeCommaIfNeeded()
@@ -203,7 +203,7 @@ struct JSONKeyedEncodingContainer<K : CodingKey, Writer: StreamWriter>
         }
     }
 
-    mutating func superEncoder(forKey key: K) -> Encoder {
+    mutating func superEncoder(forKey key: K) -> Swift.Encoder {
         do {
             try closeNestedIfNeeded()
             try writeCommaIfNeeded()
