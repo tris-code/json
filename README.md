@@ -9,8 +9,10 @@ JSON Encoder & Decoder for Swift 4.
 ```
 
 ## Performance
-JSONEncoder: 476 726 tasks/sec<br>
-Foundation.JSONEncoder: 13 949 tasks/sec<br>
+`{"message":"Hello, World!"}`<br>
 
-JSONDecoder: 202 129 tasks/sec<br>
-Foundation.JSONDecoder: 86 761 tasks/sec<br>
+JSONEncoder: 934 644 tasks/sec<br>
+Foundation.JSONEncoder: 92 619 tasks/sec<br>
+
+JSONDecoder: 236 062 tasks/sec<br>
+Foundation.JSONDecoder: 226 515 tasks/sec<br>
