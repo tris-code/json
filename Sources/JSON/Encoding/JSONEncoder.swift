@@ -138,7 +138,7 @@ extension _JSONEncoder {
     }
 
     func encode(_ value: Bool) throws {
-        try storage.write(String(describing: value))
+        try storage.write(value ? .true : .false)
     }
 
     func encode(_ value: Int) throws {
