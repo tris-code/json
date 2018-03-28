@@ -11,6 +11,8 @@
 import Stream
 
 public struct JSONEncoder {
+    public init() {}
+
     public func encode<Model, Writer>(_ value: Model, to writer: Writer) throws
         where Model: Encodable, Writer: StreamWriter
     {
