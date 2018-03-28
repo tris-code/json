@@ -77,7 +77,7 @@ extension JSONValue: Equatable {
 extension JSONValue: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .null: return "nil"
+        case .null: return "null"
         case .bool(let value): return value.description
         case .number(let value): return value.description
         case .string(let value): return "\"\(value)\""

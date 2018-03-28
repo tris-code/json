@@ -221,9 +221,7 @@ extension _JSONEncoder {
                 guard let utf8 = UTF8.encode(scalar) else {
                     throw JSONError.invalidJSON
                 }
-                for code in utf8 {
-                    try storage.write(code)
-                }
+                try utf8.forEach(storage.write)
             }
         }
 
