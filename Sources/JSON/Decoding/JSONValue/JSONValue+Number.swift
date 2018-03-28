@@ -20,7 +20,7 @@ extension JSONValue {
 }
 
 extension JSONValue.Number {
-    init<T: StreamReader>(from stream: T) throws {
+    public init<T: StreamReader>(from stream: T) throws {
         let isNegative = try stream.consume(.hyphen) ? true : false
         var isInteger = true
 

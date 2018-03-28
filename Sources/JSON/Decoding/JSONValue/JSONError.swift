@@ -8,7 +8,7 @@
  * See CONTRIBUTORS.txt for the list of the project authors
  */
 
-enum JSONError: Error {
+public enum JSONError: Error {
     case invalidJSON
     case cantEncodeNil
     case cantDecodeNil
