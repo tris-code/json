@@ -8,8 +8,10 @@
  * See CONTRIBUTORS.txt for the list of the project authors
  */
 
-public enum JSONError: Error {
-    case invalidJSON
-    case cantEncodeNil
-    case cantDecodeNil
+extension JSON {
+    public enum Error: Swift.Error {
+        case invalidJSON
+        case cantEncodeNil
+        case cantDecodeNil
+    }
 }

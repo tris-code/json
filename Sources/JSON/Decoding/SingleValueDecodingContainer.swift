@@ -13,8 +13,8 @@ struct JSONSingleValueDecodingContainer: SingleValueDecodingContainer {
         return []
     }
 
-    var value: JSONValue
-    init(_ value: JSONValue) {
+    var value: JSON.Value
+    init(_ value: JSON.Value) {
         self.value = value
     }
 

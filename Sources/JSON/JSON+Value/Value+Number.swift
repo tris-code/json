@@ -11,15 +11,7 @@
 import Stream
 import Platform
 
-extension JSONValue {
-    public enum Number {
-        case int(Int)
-        case uint(UInt)
-        case double(Double)
-    }
-}
-
-extension JSONValue.Number {
+extension JSON.Value.Number {
     public init<T: StreamReader>(from stream: T) throws {
         let isNegative = try stream.consume(.hyphen) ? true : false
         var isInteger = true
@@ -57,8 +49,11 @@ extension JSONValue.Number {
     }
 }
 
-extension JSONValue.Number: Equatable {
-    public static func ==(lhs: JSONValue.Number, rhs: JSONValue.Number) -> Bool {
+extension JSON.Value.Number: Equatable {
+    public static func ==(
+        lhs: JSON.Value.Number,
+        rhs: JSON.Value.Number) -> Bool
+    {
         switch (lhs, rhs) {
         case let (.int(lhs), .int(rhs)): return lhs == rhs
         case let (.uint(lhs), .uint(rhs)): return lhs == rhs
@@ -68,7 +63,7 @@ extension JSONValue.Number: Equatable {
     }
 }
 
-extension JSONValue.Number: CustomStringConvertible {
+extension JSON.Value.Number: CustomStringConvertible {
     public var description: String {
         switch self {
         case .int(let int): return int.description

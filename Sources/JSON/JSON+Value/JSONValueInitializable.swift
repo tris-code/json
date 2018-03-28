@@ -9,11 +9,11 @@
  */
 
 public protocol JSONValueInitializable {
-    init?(_ value: JSONValue)
+    init?(_ value: JSON.Value)
 }
 
 extension Bool: JSONValueInitializable {
-        public init?(_ value: JSONValue) {
+        public init?(_ value: JSON.Value) {
         guard case .bool(let value) = value else {
             return nil
         }
@@ -22,7 +22,7 @@ extension Bool: JSONValueInitializable {
 }
 
 extension Int: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -35,7 +35,7 @@ extension Int: JSONValueInitializable {
 }
 
 extension Int8: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -48,7 +48,7 @@ extension Int8: JSONValueInitializable {
 }
 
 extension Int16: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -61,7 +61,7 @@ extension Int16: JSONValueInitializable {
 }
 
 extension Int32: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -74,7 +74,7 @@ extension Int32: JSONValueInitializable {
 }
 
 extension Int64: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -87,7 +87,7 @@ extension Int64: JSONValueInitializable {
 }
 
 extension UInt: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -100,7 +100,7 @@ extension UInt: JSONValueInitializable {
 }
 
 extension UInt8: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -115,7 +115,7 @@ extension UInt8: JSONValueInitializable {
 }
 
 extension UInt16: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -130,7 +130,7 @@ extension UInt16: JSONValueInitializable {
 }
 
 extension UInt32: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -145,7 +145,7 @@ extension UInt32: JSONValueInitializable {
 }
 
 extension UInt64: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -160,7 +160,7 @@ extension UInt64: JSONValueInitializable {
 }
 
 extension Float: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -177,7 +177,7 @@ extension Float: JSONValueInitializable {
 }
 
 extension Double: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .number(let number) = value else {
             return nil
         }
@@ -194,7 +194,7 @@ extension Double: JSONValueInitializable {
 }
 
 extension String: JSONValueInitializable {
-    public init?(_ value: JSONValue) {
+    public init?(_ value: JSON.Value) {
         guard case .string(let value) = value else {
             return nil
         }

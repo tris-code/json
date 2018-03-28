@@ -17,8 +17,8 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
         return []
     }
 
-    let object: [String : JSONValue]
-    init(_ object: [String : JSONValue]) {
+    let object: [String : JSON.Value]
+    init(_ object: [String : JSON.Value]) {
         self.object = object
     }
 
@@ -63,7 +63,7 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
 
     func decodeNil(forKey key: K) throws -> Bool {
         // TODO:
-        throw JSONError.cantDecodeNil
+        throw JSON.Error.cantDecodeNil
     }
 
     func decode(_ type: Bool.Type, forKey key: K) throws -> Bool {
@@ -208,7 +208,7 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
             throw DecodingError.keyNotFound(key, nil)
         }
         guard case .object(let object) = nested else {
-            throw DecodingError.typeMismatch([String : JSONValue].self, nil)
+            throw DecodingError.typeMismatch([String : JSON.Value].self, nil)
         }
         let container = JSONKeyedDecodingContainer<NestedKey>(object)
         return KeyedDecodingContainer(container)
@@ -221,7 +221,7 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
             throw DecodingError.keyNotFound(key, nil)
         }
         guard case .array(let array) = nested else {
-            throw DecodingError.typeMismatch([JSONValue].self, nil)
+            throw DecodingError.typeMismatch([JSON.Value].self, nil)
         }
         return JSONUnkeyedDecodingContainer(array)
     }
