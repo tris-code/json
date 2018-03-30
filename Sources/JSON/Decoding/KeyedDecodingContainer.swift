@@ -14,7 +14,7 @@ struct JSONKeyedDecodingContainer<K : CodingKey>
         return []
     }
     var allKeys: [K] {
-        return []
+        return object.keys.compactMap(Key.init)
     }
 
     let object: [String : JSON.Value]
