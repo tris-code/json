@@ -22,7 +22,7 @@ class JSONDecoderTests: TestCase {
                 let answer: Int
                 let hello: String
             }
-            let object = try JSONDecoder().decode(Model.self, from: json)
+            let object = try JSON.decode(Model.self, from: json)
             assertEqual(object.answer, 42)
             assertEqual(object.hello, "Hello, World!")
         }
@@ -40,7 +40,7 @@ class JSONDecoderTests: TestCase {
                 let answer: Int
                 let nested: Nested
             }
-            let object = try JSONDecoder().decode(Model.self, from: json)
+            let object = try JSON.decode(Model.self, from: json)
             assertEqual(object.answer, 42)
             assertEqual(object.nested.hello, "Hello, World!")
         }
@@ -61,7 +61,7 @@ class JSONDecoderTests: TestCase {
             let answer: Int
         }
         do {
-            let object = try JSONDecoder().decode(Model.self, from: json)
+            let object = try JSON.decode(Model.self, from: json)
             assertEqual(object.nested.hello, "Hello, World!")
             assertEqual(object.answer, 42)
         } catch {
@@ -84,7 +84,7 @@ class JSONDecoderTests: TestCase {
             let answer: Int
         }
         do {
-            let object = try JSONDecoder().decode(Model.self, from: json)
+            let object = try JSON.decode(Model.self, from: json)
             assertEqual(object.nested.array, [1,2])
             assertEqual(object.answer, 42)
         } catch {
@@ -104,7 +104,7 @@ class JSONDecoderTests: TestCase {
                 let nested: Nested
                 let answer: Int
             }
-            let object = try JSONDecoder().decode(Model.self, from: json)
+            let object = try JSON.decode(Model.self, from: json)
             assertEqual(object.nested.array.first ?? [], [1,2])
             assertEqual(object.nested.array.last ?? [], [3,4])
             assertEqual(object.answer, 42)
@@ -114,7 +114,7 @@ class JSONDecoderTests: TestCase {
     func testUnkeyed() {
         scope {
             let json = InputByteStream("[1,2,3]")
-            let object = try JSONDecoder().decode([Int].self, from: json)
+            let object = try JSON.decode([Int].self, from: json)
             assertEqual(object, [1,2,3])
         }
     }
@@ -122,7 +122,7 @@ class JSONDecoderTests: TestCase {
     func testUnkeyedOfUnkeyed() {
         scope {
             let json = InputByteStream("[[1,2],[3,4]]")
-            let object = try JSONDecoder().decode([[Int]].self, from: json)
+            let object = try JSON.decode([[Int]].self, from: json)
             assertEqual(object.first ?? [], [1,2])
             assertEqual(object.last ?? [], [3,4])
         }
@@ -142,7 +142,7 @@ class JSONDecoderTests: TestCase {
                 let single: Number
                 let array: [Number] = [.one, .two, .three]
             }
-            let object = try JSONDecoder().decode(Model.self, from: json)
+            let object = try JSON.decode(Model.self, from: json)
             assertEqual(object.single, .one)
             assertEqual(object.array, [.one, .two, .three])
         }
@@ -158,7 +158,7 @@ class JSONDecoderTests: TestCase {
                 let hello: String
             }
             let type: Decodable.Type = Model.self
-            let decodable = try JSONDecoder().decode(decodable: type, from: json)
+            let decodable = try JSON.decode(decodable: type, from: json)
             guard let object = decodable as? Model else {
                 fail()
                 return

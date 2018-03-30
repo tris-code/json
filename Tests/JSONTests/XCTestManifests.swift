@@ -67,8 +67,8 @@ extension JSONTests {
 
 extension PublicAPITests {
     static let __allTests = [
+        ("testJSONDecoder", testJSONDecoder),
         ("testJSONEncoder", testJSONEncoder),
-        ("testJSONEncoderEncode", testJSONEncoderEncode),
     ]
 }
 

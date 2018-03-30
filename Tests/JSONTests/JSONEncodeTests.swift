@@ -21,7 +21,7 @@ class JSONEncoderTests: TestCase {
                 let answer: Int = 42
                 let hello: String = "Hello, World"
             }
-            let bytes = try JSONEncoder().encode(Model())
+            let bytes = try JSON.encode(Model())
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, expected)
         }
@@ -39,7 +39,7 @@ class JSONEncoderTests: TestCase {
                 let answer: Int = 42
                 let nested = Nested()
             }
-            let bytes = try JSONEncoder().encode(Model())
+            let bytes = try JSON.encode(Model())
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, expected)
         }
@@ -57,7 +57,7 @@ class JSONEncoderTests: TestCase {
                 let nested = Nested()
                 let answer: Int = 42
             }
-            let bytes = try JSONEncoder().encode(Model())
+            let bytes = try JSON.encode(Model())
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, expected)
         }
@@ -75,7 +75,7 @@ class JSONEncoderTests: TestCase {
                 let nested = Nested()
                 let answer: Int = 42
             }
-            let bytes = try JSONEncoder().encode(Model())
+            let bytes = try JSON.encode(Model())
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, expected)
         }
@@ -93,7 +93,7 @@ class JSONEncoderTests: TestCase {
                 let nested = Nested()
                 let answer: Int = 42
             }
-            let bytes = try JSONEncoder().encode(Model())
+            let bytes = try JSON.encode(Model())
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, expected)
         }
@@ -101,7 +101,7 @@ class JSONEncoderTests: TestCase {
 
     func testUnkeyed() {
         scope {
-            let bytes = try JSONEncoder().encode([1,2,3])
+            let bytes = try JSON.encode([1,2,3])
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, "[1,2,3]")
         }
@@ -109,7 +109,7 @@ class JSONEncoderTests: TestCase {
 
     func testUnkeyedOfUnkeyed() {
         scope {
-            let bytes = try JSONEncoder().encode([[1,2],[3,4]])
+            let bytes = try JSON.encode([[1,2],[3,4]])
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, "[[1,2],[3,4]]")
         }
@@ -129,7 +129,7 @@ class JSONEncoderTests: TestCase {
                 let single: Number = .one
                 let array: [Number] = [.one, .two, .three]
             }
-            let bytes = try JSONEncoder().encode(Model())
+            let bytes = try JSON.encode(Model())
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, expected)
         }
@@ -145,7 +145,7 @@ class JSONEncoderTests: TestCase {
                 let hello: String = "Hello, World"
             }
             let encodable = Model() as Encodable
-            let bytes = try JSONEncoder().encode(encodable: encodable)
+            let bytes = try JSON.encode(encodable: encodable)
             let json = String(decoding: bytes, as: UTF8.self)
             assertEqual(json, expected)
         }
