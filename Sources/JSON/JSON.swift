@@ -11,6 +11,7 @@
 import Stream
 
 public struct JSON {
+    @dynamicMemberLookup
     public enum Value {
         case null
         case bool(Bool)
@@ -23,6 +24,29 @@ public struct JSON {
             case int(Int)
             case uint(UInt)
             case double(Double)
+        }
+
+        public subscript(dynamicMember member: String) -> Value? {
+            get {
+                switch self {
+                case .object(let object): return object[member]
+                default: return nil
+                }
+            }
+            set {
+                switch self {
+                case .object(var object):
+                    object[member] = newValue
+                    self = .object(object)
+                default:
+                    switch newValue {
+                    case .some(let value):
+                        self = .object([member : value])
+                    case .none:
+                        self = .object([:])
+                    }
+                }
+            }
         }
     }
 }
