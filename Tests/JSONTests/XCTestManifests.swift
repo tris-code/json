@@ -20,6 +20,25 @@ extension DecoderTests {
     ]
 }
 
+extension DynamicLookupTests {
+    static let __allTests = [
+        ("testGet", testGet),
+        ("testSet", testSet),
+    ]
+}
+
+extension EncodeValueTests {
+    static let __allTests = [
+        ("testArray", testArray),
+        ("testBool", testBool),
+        ("testNested", testNested),
+        ("testNull", testNull),
+        ("testNumber", testNumber),
+        ("testObject", testObject),
+        ("testString", testString),
+    ]
+}
+
 extension EncoderTests {
     static let __allTests = [
         ("testKeyedContainer", testKeyedContainer),
@@ -104,6 +123,8 @@ public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(DecodeValueTests.__allTests),
         testCase(DecoderTests.__allTests),
+        testCase(DynamicLookupTests.__allTests),
+        testCase(EncodeValueTests.__allTests),
         testCase(EncoderTests.__allTests),
         testCase(JSONDecoderTests.__allTests),
         testCase(JSONEncoderTests.__allTests),
