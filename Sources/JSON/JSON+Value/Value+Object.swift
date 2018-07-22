@@ -41,4 +41,16 @@ extension Dictionary where Key == String, Value == JSON.Value {
         }
         self = result
     }
+
+    public func encode(to stream: StreamWriter) throws {
+        try stream.write(.curlyBracketOpen)
+        for (key, value) in self {
+            try stream.write(.quote)
+            try stream.write(key)
+            try stream.write(.quote)
+            try stream.write(.colon)
+            try value.encode(to: stream)
+        }
+        try stream.write(.curlyBracketClose)
+    }
 }
