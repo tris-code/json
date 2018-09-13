@@ -167,13 +167,13 @@ extension Encoder {
     }
 
     func encode(_ value: String) throws {
-        try storage.write(.quote)
+        try storage.write(.doubleQuote)
 
         for scalar in value.unicodeScalars {
             switch scalar {
             case "\"":
                 try storage.write(.backslash)
-                try storage.write(.quote)
+                try storage.write(.doubleQuote)
             case "\\":
                 try storage.write(.backslash)
                 try storage.write(.backslash)
@@ -206,6 +206,6 @@ extension Encoder {
             }
         }
 
-        try storage.write(.quote)
+        try storage.write(.doubleQuote)
     }
 }

@@ -43,7 +43,7 @@ extension JSON.Value {
         case (.zero)...(.nine), .hyphen:
             self = .number(try Number(from: stream))
 
-        case .quote:
+        case .doubleQuote:
             self = .string(try String(from: stream))
 
         default:
@@ -60,9 +60,9 @@ extension JSON.Value {
         case .number(let number):
             try number.encode(to: stream)
         case .string(let string):
-            try stream.write(.quote)
+            try stream.write(.doubleQuote)
             try stream.write(string)
-            try stream.write(.quote)
+            try stream.write(.doubleQuote)
         case .array(let values):
             try values.encode(to: stream)
         case .object(let object):
