@@ -20,7 +20,7 @@ class EncoderTests: TestCase {
             {"answer":42}
             """
             let output = OutputByteStream()
-            let encoder = Encoder(output)
+            let encoder = JSON.Encoder(output)
             enum Keys: CodingKey {
                 case answer
             }
@@ -35,7 +35,7 @@ class EncoderTests: TestCase {
         scope {
             let expected = "[1,[2],[3],4]"
             let output = OutputByteStream()
-            let encoder = Encoder(output)
+            let encoder = JSON.Encoder(output)
             var container = encoder.unkeyedContainer()
             try container.encode(1)
             var nested1 = container.nestedUnkeyedContainer()
@@ -52,7 +52,7 @@ class EncoderTests: TestCase {
         scope {
             let expected = "true"
             let output = OutputByteStream()
-            let encoder = Encoder(output)
+            let encoder = JSON.Encoder(output)
             var container = encoder.singleValueContainer()
             try container.encode(true)
             assertEqual(output.string, expected)

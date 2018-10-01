@@ -17,7 +17,7 @@ class UnkeyedEncodingContainerTests: TestCase {
     func testContainer() {
         scope {
             let output = OutputByteStream()
-            let encoder = Encoder(output)
+            let encoder = JSON.Encoder(output)
             var unkeyedContainer = encoder.unkeyedContainer()
             try unkeyedContainer.encode(1)
             try unkeyedContainer.encode(2)
@@ -29,7 +29,7 @@ class UnkeyedEncodingContainerTests: TestCase {
     func testNestedContainer() {
         scope {
             let output = OutputByteStream()
-            let encoder = Encoder(output)
+            let encoder = JSON.Encoder(output)
             var unkeyedContainer = encoder.unkeyedContainer()
             var nested1 = unkeyedContainer.nestedUnkeyedContainer()
             try nested1.encode(1)
@@ -43,7 +43,7 @@ class UnkeyedEncodingContainerTests: TestCase {
     func testNull() {
         scope {
             let output = OutputByteStream()
-            let encoder = Encoder(output)
+            let encoder = JSON.Encoder(output)
             var unkeyedContainer = encoder.unkeyedContainer()
             try unkeyedContainer.encodeNil()
             try unkeyedContainer.encodeNil()

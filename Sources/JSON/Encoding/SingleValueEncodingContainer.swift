@@ -16,9 +16,9 @@ struct JSONSingleValueEncodingContainer: SingleValueEncodingContainer {
         return []
     }
 
-    let encoder: Encoder
+    let encoder: JSON.Encoder
 
-    init(_ encoder: Encoder) {
+    init(_ encoder: JSON.Encoder) {
         self.encoder = encoder
     }
 
