@@ -10,6 +10,7 @@
  ******************************************************************************/
 
 import Stream
+import Codable
 
 struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     var codingPath: [CodingKey] {
@@ -166,8 +167,7 @@ struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
             count += 1
             return encoder.container(keyedBy: keyType)
         } catch {
-            let container = KeyedEncodingContainerError<NestedKey>()
-            return KeyedEncodingContainer(container)
+            return KeyedEncodingContainer(KeyedEncodingError(error))
         }
     }
 
@@ -179,7 +179,7 @@ struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
             count += 1
             return encoder.unkeyedContainer()
         } catch {
-            return UnkeyedEncodingContainerError()
+            return EncodingError(error)
         }
     }
 
@@ -190,7 +190,7 @@ struct JSONUnkeyedEncodingContainer: UnkeyedEncodingContainer {
             hasNested = true
             return encoder
         } catch {
-            return EncoderError()
+            return EncodingError(error)
         }
     }
 }

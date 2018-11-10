@@ -10,6 +10,7 @@
  ******************************************************************************/
 
 import Stream
+import Codable
 
 extension JSON {
     public static func withScopedEncoder<T>(
@@ -87,7 +88,7 @@ extension JSON {
                 let container = JSONKeyedEncodingContainer<Key>(self)
                 return KeyedEncodingContainer(container)
             } catch {
-                return KeyedEncodingContainer(KeyedEncodingContainerError())
+                return KeyedEncodingContainer(KeyedEncodingError(error))
             }
         }
 
@@ -96,7 +97,7 @@ extension JSON {
                 try openContainer(.unkeyed)
                 return JSONUnkeyedEncodingContainer(self)
             } catch {
-                return UnkeyedEncodingContainerError()
+                return EncodingError(error)
             }
         }
 
@@ -105,7 +106,7 @@ extension JSON {
                 try openContainer(.single)
                 return JSONSingleValueEncodingContainer(self)
             } catch {
-                return SingleValueEncodingContainerError()
+                return EncodingError(error)
             }
         }
     }

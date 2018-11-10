@@ -10,6 +10,7 @@
  ******************************************************************************/
 
 import Stream
+import Codable
 
 struct JSONKeyedEncodingContainer<K : CodingKey>
 : KeyedEncodingContainerProtocol {
@@ -174,8 +175,7 @@ struct JSONKeyedEncodingContainer<K : CodingKey>
             hasNested = true
             return encoder.container(keyedBy: keyType)
         } catch {
-            let container = KeyedEncodingContainerError<NestedKey>()
-            return KeyedEncodingContainer(container)
+            return KeyedEncodingContainer(KeyedEncodingError(error))
         }
     }
 
@@ -189,7 +189,7 @@ struct JSONKeyedEncodingContainer<K : CodingKey>
             hasNested = true
             return encoder.unkeyedContainer()
         } catch {
-            return UnkeyedEncodingContainerError()
+            return EncodingError(error)
         }
     }
 
@@ -200,7 +200,7 @@ struct JSONKeyedEncodingContainer<K : CodingKey>
             hasNested = true
             return encoder
         } catch {
-            return EncoderError()
+            return EncodingError(error)
         }
     }
 
@@ -212,7 +212,7 @@ struct JSONKeyedEncodingContainer<K : CodingKey>
             hasNested = true
             return encoder
         } catch {
-            return EncoderError()
+            return EncodingError(error)
         }
     }
 }
