@@ -1,6 +1,6 @@
 # JSON
 
-JSON Encoder & Decoder for Swift 4.
+Fastest JSON implementation written in Swift.
 
 ## Package.swift
 
