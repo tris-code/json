@@ -8,24 +8,24 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/tris-foundation/platform.git",
+            url: "https://github.com/tris-code/platform.git",
             .branch("master")),
         .package(
-            url: "https://github.com/tris-foundation/codable.git",
+            url: "https://github.com/tris-code/codable.git",
             .branch("master")),
         .package(
-            url: "https://github.com/tris-foundation/stream.git",
+            url: "https://github.com/tris-code/stream.git",
             .branch("master")),
         .package(
-            url: "https://github.com/tris-foundation/test.git",
+            url: "https://github.com/tris-code/test.git",
             .branch("master")),
     ],
     targets: [
         .target(
-            name: "JSON", 
+            name: "JSON",
             dependencies: ["Platform", "Codable", "Stream"]),
         .testTarget(
-            name: "JSONTests", 
+            name: "JSONTests",
             dependencies: ["JSON", "Test"])
     ]
 )
