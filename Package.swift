@@ -7,10 +7,10 @@ let package = Package(
         .library(name: "JSON", targets: ["JSON"])
     ],
     dependencies: [
-        .package(path: "../Platform"),
-        .package(path: "../Codable"),
-        .package(path: "../Stream"),
-        .package(path: "../Test")
+        .package(path: "../platform"),
+        .package(path: "../codable"),
+        .package(path: "../stream"),
+        .package(path: "../test")
     ],
     targets: [
         .target(
